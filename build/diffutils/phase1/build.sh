@@ -40,6 +40,6 @@ make install
 
 cd ..
 rm -rf $pkg/
-echo "$S: You have build $pkg from scratch!"
+echo "$S: You have built $pkg from scratch!"
 
 
