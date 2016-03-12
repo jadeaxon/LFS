@@ -18,9 +18,12 @@ library-check.sh
 
 build/
 	Where the source tarballs get built.
+	The idea is to have a build.sh for each pkg for each phase of building.
 
 tools/
 	The toolchain.  Not stored in Git repo.
+	This is a temporary place to build stuff for chapter 5.
+	It is not the final toolchain.  Still uses host system to help build.
 
 sources/
 	Various source tarballs and patches.
