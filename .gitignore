@@ -1,1 +1,10 @@
 tools*/
+System Volume Information/
+dev/
+proc/
+sys/
+usr/
+var/
+root/
+lib64
+
