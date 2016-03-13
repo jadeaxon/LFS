@@ -7,11 +7,11 @@ Target is also whatever the Raspberry Pi 3 is.<br.
 # Getting Started
 Login as user `lfs` to your dev VM.<br>
 Make sure you have `bash-glory` and `home` applied to this user.<br>
-Insert the USB thumbdrive you prepared and attach to VM.<brP
+Insert the USB thumbdrive you prepared and attach to VM.<br>
 ```
 sudo $(command which mount-lfs.sh)
 ```
-Do some work in `/mnt/LFS`.<brP
+Do some work in `/mnt/LFS`.<br>
 ```
 sudo $(command which umount-lfs.sh)
 ```
