@@ -2,7 +2,7 @@
 Linux from Scratch<br>
 Toolchain built on Ubuntu 15.04 x86_64.<br>
 Target is x86_64.<br>
-Target is also whatever the Raspberry Pi 3 is.<br.
+Target is also whatever the Raspberry Pi 3 is.<br>
 
 # Getting Started
 Login as user `lfs` to your dev VM.<br>
