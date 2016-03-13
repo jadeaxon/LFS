@@ -40,5 +40,9 @@ esac
 
 make install
 
+echo "$S: Total victory!"
+
+
+
 
 
