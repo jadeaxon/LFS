@@ -129,6 +129,9 @@ ln -sv gcc /tools/bin/cc
 
 test_compiler
 
+cd $D
+rm -rf $pkg
+
 echo "$S: Total victory!"
 
 
