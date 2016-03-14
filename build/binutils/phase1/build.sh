@@ -4,8 +4,9 @@
 set -e
 
 S=$(basename $0)
+src=/mnt/LFS/sources
 pkg=binutils-2.26
-archive=$LFS/sources/binutils-2.26.tar.bz2
+archive=$src/binutils-2.26.tar.bz2
 
 echo "$S: Building $pkg phase 1 for ${LFS_TGT}."
 
@@ -13,9 +14,12 @@ rm -rf $pkg
 tar xavf $archive
 echo "$S: Extracting archive $archive."
 cd $pkg
+
+echo "$S: Patching mpfr."
+patch -p1 < $src/binutils*.patch
+
 mkdir build
 cd build
-
 
 # --prefix -- where to install binutils
 # --with-sysroot -- look here for system libs during xcompile, not /.
