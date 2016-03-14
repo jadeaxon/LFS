@@ -11,11 +11,11 @@ archive=$src/binutils-2.26.tar.bz2
 echo "$S: Building $pkg phase 1 for ${LFS_TGT}."
 
 rm -rf $pkg
-tar xavf $archive
 echo "$S: Extracting archive $archive."
+tar xavf $archive
 cd $pkg
 
-echo "$S: Patching mpfr."
+echo "$S: Patching ${pkg}."
 patch -p1 < $src/binutils*.patch
 
 mkdir build
