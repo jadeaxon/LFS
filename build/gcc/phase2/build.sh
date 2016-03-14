@@ -66,7 +66,7 @@ include_dependencies() {
 	cd -
 
 	tar -xf $src/gmp-6.1.0.tar.xz
-	mv -v $src/gmp-6.1.0 gmp
+	mv -v gmp-6.1.0 gmp
 
 	tar -xf $src/mpc-1.0.3.tar.gz
 	mv -v mpc-1.0.3 mpc
