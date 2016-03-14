@@ -5,25 +5,46 @@
 #==============================================================================
 
 set -e
-
-src='../../../sources'
-src=$(cd $src; pwd) # Convert to absolute path.
+shopt -s nullglob
 
 S=$(basename $0)
+D=$(pwd)
+src=$LFS/sources
 
-pkg=tcl8.6.3
-z=gz
-tarball=${pkg}-src.tar.$z
+pkg=tcl8.6.4
+pkg_file=tcl-core8.6.4-src
+archive=( $src/${pkg_file}.tar.* ) # Expand glob into an array.
+archive=${archive[0]}
+
+echo $archive
+
+#==============================================================================
+# Functions
+#==============================================================================
+
+extract_archive() {
+	echo "$S: Extracting archive $archive."
+	rm -rf $pkg
+	tar xavf $archive
+	cd $pkg
+}
+
+apply_patch() {
+	patch=( $src/${pkg}*.patch )
+	patch=${patch[0]}
+	if [ "$patch" ]; then
+		echo "$S: Patching ${pkg} with ${patch}."
+		patch -p1 < $patch
+	fi
+}
 
 
 #==============================================================================
 # Main
 #==============================================================================
 
-# Extract source tarball.
-rm -rf $pkg/
-tar xavf $src/$tarball
-cd $pkg/
+extract_archive
+apply_patch
 
 cd unix
 ./configure --prefix=/tools
@@ -39,11 +60,15 @@ if [ ! -f $lib ]; then
 	echo "$S: ERROR: $lib DNE."
 	exit 1
 fi
-chmod -v u+w $lib
 
+chmod -v u+w $lib
 make install-private-headers
 
 rm -f /tools/bin/tclsh
 ln -sv tclsh8.6 /tools/bin/tclsh
 
+cd $D
+rm -rf $pkg
+
+echo "$S: Total victory!"
 
