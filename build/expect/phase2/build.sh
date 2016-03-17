@@ -56,6 +56,7 @@ make
 make test
 make SCRIPTS="" install
 
+cd $D
 rm -rf $pkg
 echo "$S: Total victory!"
 
