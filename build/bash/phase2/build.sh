@@ -5,30 +5,44 @@
 #==============================================================================
 
 set -e
-
-src='../../../sources'
-src=$(cd $src; pwd) # Convert to absolute path.
+shopt -s nullglob
 
 S=$(basename $0)
+D=$(pwd)
+src=$LFS/sources
 
 pkg=bash-4.3.30
-z=gz
-tarball=${pkg}.tar.$z
+archive=( $src/${pkg}.tar.* ) # Expand glob into an array.
+archive=${archive[0]}
+
+
+#==============================================================================
+# Functions
+#==============================================================================
+
+extract_archive() {
+    echo "$S: Extracting archive $archive."
+    rm -rf $pkg
+    tar xavf $archive
+    cd $pkg
+}
+
+apply_patch() {
+    patch=( $src/${pkg}*.patch )
+    patch=${patch[0]}
+    if [ "$patch" ]; then
+        echo "$S: Patching ${pkg} with ${patch}."
+        patch -p1 < $patch
+    fi
+}
 
 
 #==============================================================================
 # Main
 #==============================================================================
 
-# Extract source tarball.
-rm -rf $pkg/
-tar xavf $src/$tarball
-cd $pkg/
-
-# Apply the patch.
-cp $src/bash*.patch .
-patch -p1 < bash*.patch
-
+extract_archive
+apply_patch
 
 ./configure --prefix=/tools --without-bash-malloc
 make
@@ -38,4 +52,7 @@ make install
 rm -f /tools/bin/sh
 ln -sv bash /tools/bin/sh
 
+cd $D
+rm -rf $pkg
+echo "$S: Total victory!"
 
