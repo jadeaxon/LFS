@@ -4,42 +4,26 @@
 # Variables
 #==============================================================================
 
-set -e
-
-src='../../../sources'
-src=$(cd $src; pwd) # Convert to absolute path.
-
-S=$(basename $0)
+source /usr/share/lib/bash-glory/LFS.sh
 
 bpkg=make # Pkg base name.
 ver=4.1 # Pkg version.
-pkg=${bpkg}-${ver} # Full pkg name.
-z=bz2 # Compression style.
-tarball=${pkg}.tar.$z # Tarball filename.
 
+LFS::init
+LFS::debug
 
 #==============================================================================
 # Main
 #==============================================================================
 
-# Extract source tarball.
-rm -rf $pkg/
-tar xavf $src/$tarball
-cd $pkg/
-
-# Apply the batch.
-if [ -f $src/${bpkg}*.patch ]; then
-	cp $src/${bpkg}*.patch .
-	patch -p1 < ${bpkg}*.patch
-fi
+LFS::extract_archive
+LFS::apply_patch
 
 ./configure --prefix=/tools --without-guile
 make
 make check
 make install
 
-cd ..
-rm -rf $pkg/
-echo "$S: You have built $pkg from scratch!"
+LFS::cleanup
 
 
