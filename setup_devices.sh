@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# DEPRECATED: Use prepare_to_chroot.sh.
+echo "Use prepare_to_chroot.sh."
+exit 1
+
 # Prepares us for running chroot.sh.
 # We need to do this and chroot.sh every time we reboot.
 

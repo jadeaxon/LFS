@@ -3,7 +3,7 @@
 # PRE: setup_devices.sh has been run.
 
 # Run from the toolchain instead of the main Ubuntu system.
-chroot "$LFS" /tools/bin/env -i \
+sudo chroot "$LFS" /tools/bin/env -i \
 	HOME=/root \
 	TERM="$TERM" \
 	PS1='\u:\w\$ ' \
