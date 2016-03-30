@@ -8,4 +8,6 @@ usr/
 var/
 root/
 lib64
+lib/
+run/
 
