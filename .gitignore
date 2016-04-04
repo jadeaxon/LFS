@@ -12,5 +12,6 @@ lib/
 run/
 bin/
 etc/
-
+tmp/
+.git.old/
 
