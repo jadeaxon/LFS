@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-# PRE: setup_devices.sh has been run.
+# PRE: prepare_to_chroot.sh has been run.  You must run this *every* time you reboot your VM.
+
+S=$(basename $0)
+
+if [ ! -d $LFS/dev/pts/ ]; then
+	echo "$S: ERROR: You have not run prepare_to_chroot.sh!"
+	exit 1
+fi
 
 # Run from the toolchain instead of the main Ubuntu system.
 sudo chroot "$LFS" /tools/bin/env -i \
