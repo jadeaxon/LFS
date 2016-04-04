@@ -12,6 +12,7 @@ ln -sv /tools/lib/libgcc_s.so{,.1} /usr/lib
 ln -sv /tools/lib/libstdc++.so{,.6} /usr/lib
 sed 's/tools/usr/' /tools/lib/libstdc++.la > /usr/lib/libstdc++.la
 ln -sv bash /bin/sh
+ln -sv /tools/bin/env /usr/bin
 
 echo "$S: WIN: You've created various links."
 
