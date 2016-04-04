@@ -1,3 +1,4 @@
+# NOTE: We can't use a shebang yet.
 #!/usr/bin/env bash
 
 # PRE: create_groups.sh has run successfully.
@@ -31,6 +32,6 @@ nogroup:x:99:
 users:x:999:
 EOF
 
-echo "$S: WIN: You've created /etc/groups."
+echo "$S: WIN: You've created /etc/group."
 
 

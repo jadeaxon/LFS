@@ -1,3 +1,4 @@
+# NOTE: We can't use a shebang yet.
 #!/usr/bin/env bash
 
 # PRE: create_links.sh has run successfully.

@@ -10,4 +10,7 @@ root/
 lib64
 lib/
 run/
+bin/
+etc/
+
 
