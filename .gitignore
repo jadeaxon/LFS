@@ -1,3 +1,4 @@
+*.log
 build/binutils/phase1/binutils-2.26
 tools*/
 System Volume Information/
@@ -11,6 +12,7 @@ lib64
 lib/
 run/
 bin/
+sbin/
 etc/
 tmp/
 .git.old/

@@ -93,7 +93,7 @@ rpc: files
 EOF
 
 echo "$S: Setting up timezones."
-tar -xf ../../tzdata2016a.tar.gz
+tar -xf $src/tzdata2016a.tar.gz
 ZONEINFO=/usr/share/zoneinfo
 mkdir -pv $ZONEINFO/{posix,right}
 for tz in etcetera southamerica northamerica europe africa antarctica \
@@ -105,7 +105,6 @@ done
 cp -v zone.tab zone1970.tab iso3166.tab $ZONEINFO
 zic -d $ZONEINFO -p America/New_York
 unset ZONEINFO
-
 
 echo "$S: Configuring dynamic loader."
 cat > /etc/ld.so.conf << "EOF"
@@ -124,7 +123,7 @@ rm -rf $pkg
 echo "$S: WIN: You have built $pkg from scratch!"
 echo "$S: You need to run this:"
 echo "cp -v /usr/share/zoneinfo/<your time zone> /etc/localtime"
-echo "$S: Current timezone:"
-tzselect
+echo "$S: Run tzselect to select your timezone."
+
 
 
