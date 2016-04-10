@@ -10,12 +10,19 @@ if [ ! -d $LFS/dev/pts/ ]; then
 fi
 
 # Run from the toolchain instead of the main Ubuntu system.
+bash=/tools/bin/bash
+if [ -e $LFS/bin/bash ]; then
+	# This is the bash built in phase 3.  Should not exist until then.
+	# This path is within the chroot.
+	bash=/bin/bash
+fi
+# We have chroot call env call bash; env believes $LFS is its / dir.
 sudo chroot "$LFS" /tools/bin/env -i \
 	HOME=/root \
 	TERM="$TERM" \
 	PS1='\u:\w\$ ' \
 	PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
-	/tools/bin/bash --login +h
+	$bash --login +h
 
 
 # +h tells bash not to hash program paths.
