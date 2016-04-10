@@ -15,5 +15,6 @@ bin/
 sbin/
 etc/
 tmp/
+home/
 .git.old/
 
