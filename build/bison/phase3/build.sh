@@ -1,28 +1,36 @@
 #!/usr/bin/env bash
+# Build bison phase 3 for LFS 7.9.
+# Bison is a compiler-compiler (like lex/yacc).
 
-#==============================================================================
-# Variables
-#==============================================================================
+# PRE: You are in the chroot environment.
 
-source /usr/share/lib/bash-glory/LFS.sh
+# NOTE: Until we have dpkg available in the chroot environment, we can't use my bash-glory package.
 
-bpkg=bison # Pkg base name.
-ver=3.0.4 # Pkg version.
+set -e
 
-LFS::init
-LFS::debug
+S=$(basename $0)
+src=/sources
+pkg=bison-3.0.4
+archive=$src/${pkg}.tar.xz
 
-#==============================================================================
-# Main
-#==============================================================================
+if [ ! -e /CHROOT ]; then
+	echo "$S: ERROR: You are not in the chroot environment."
+	exit 1
+fi
 
-LFS::extract_archive
-LFS::apply_patch
+echo "$S: Building $pkg phase 3 (chroot)."
+
+rm -rf $pkg
+echo "$S: Extracting archive $archive."
+tar xavf $archive
+cd $pkg
 
 ./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.0.4
 make
-# make check # You can only run this after Flex is installed.
 make install
 
-LFS::cleanup
+cd ..
+rm -rf $pkg
+echo "$S: WIN: You have built $pkg from scratch!"
+
 
