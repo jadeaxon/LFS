@@ -25,8 +25,35 @@ tar xavf $archive
 cd $pkg
 
 make mrproper
-
+make defconfig
 # NOTE: I manually did the rest of the step.
+# For boot from USB, I tried this:
+# http://www.linuxquestions.org/questions/linux-from-scratch-13/lfs-7-8-setting-up-grub-to-boot-from-flash-drive-4175572965/
+make LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 menuconfig
+make
+make modules_install
+
+# Put files where GRUB can use them.
+cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-4.4.2-lfs-7.9
+cp -v System.map /boot/System.map-4.4.2
+cp -v .config /boot/config-4.4.2
+
+# Install kernel documentation.
+install -d /usr/share/doc/linux-4.4.2
+cp -r Documentation/* /usr/share/doc/linux-4.4.2
+
+# Make kernel source owned by root.
+chown -R 0:0 .
+
+# Load USB in the correct order.
+install -v -m755 -d /etc/modprobe.d
+cat > /etc/modprobe.d/usb.conf << "EOF"
+# Begin /etc/modprobe.d/usb.conf
+install ohci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i ohci_hcd ; true
+install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true
+# End /etc/modprobe.d/usb.conf
+EOF
+
 
 # cd ..
 # rm -rf $pkg
