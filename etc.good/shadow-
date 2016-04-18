@@ -1,0 +1,6 @@
+root:$6$sqFtv3izLJ/F/h$VMK4HCfaNCq6fQZSjs9dbaxztQx1bb8uaz4c3VHtRAxnfEcOYJCBuJSv2233D/NFe1FgwlwcUn1VTWfcRaxZK.:16901:0:99999:7:::
+bin:x:16901:0:99999:7:::
+daemon:x:16901:0:99999:7:::
+messagebus:x:16901:0:99999:7:::
+nobody:x:16901:0:99999:7:::
+jadeaxon:!:16901:0:99999:7:::

@@ -1,0 +1,4 @@
+DISTRIB_ID="Linux From Scratch"
+DISTRIB_RELEASE="7.9"
+DISTRIB_CODENAME="Jeff Anderson"
+DISTRIB_DESCRIPTION="Linux From Scratch"

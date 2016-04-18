@@ -1,0 +1,21 @@
+UUID=fe4c9998-3e11-4e7a-911a-df2a78436b82 / ext4 defaults 1 1
+UUID=d9d27b4f-710e-4a6a-9307-78c5e7103a46 /boot ext4 defaults 1 1
+UUID=4d882764-2682-45e7-98dd-f73005edceeb /usr ext4 defaults 1 1
+UUID=56d2ce91-b927-423f-8bfb-237e2cd7670b /opt ext4 defaults 1 1
+UUID=39915a71-0c3f-4b4d-8aac-e864dc3f833d /usr/src ext4 defaults 1 1
+UUID=8202160c-f64d-4b35-b794-8a922a841152 /home ext4 defaults 1 1
+
+proc /proc proc nosuid,noexec,nodev 0 0
+sysfs /sys sysfs nosuid,noexec,nodev 0 0
+devpts /dev/pts devpts gid=5,mode=620 0 0
+tmpfs /run tmpfs defaults 0 0
+devtmpfs /dev devtmpfs mode=0755,nosuid 0 0
+
+# /dev/sdb1: LABEL="LFS_root" UUID="fe4c9998-3e11-4e7a-911a-df2a78436b82" TYPE="ext4" PARTUUID="7a0e5e3f-01"
+# /dev/sdb2: UUID="d9d27b4f-710e-4a6a-9307-78c5e7103a46" TYPE="ext4" PARTUUID="7a0e5e3f-02" # /boot
+# /dev/sdb3: LABEL="LFS_usr" UUID="4d882764-2682-45e7-98dd-f73005edceeb" TYPE="ext4" PARTUUID="7a0e5e3f-03"
+# /dev/sdb5: LABEL="LFS_opt" UUID="56d2ce91-b927-423f-8bfb-237e2cd7670b" TYPE="ext4" PARTUUID="7a0e5e3f-05"
+# /dev/sdb6: LABEL="LFS_usr_src" UUID="39915a71-0c3f-4b4d-8aac-e864dc3f833d" TYPE="ext4" PARTUUID="7a0e5e3f-06"
+# /dev/sdb7: PARTUUID="7a0e5e3f-07" # Swap
+# /dev/sdb8: LABEL="LFS_home" UUID="8202160c-f64d-4b35-b794-8a922a841152" TYPE="ext4" PARTUUID="7a0e5e3f-08"
+
